@@ -1,0 +1,184 @@
+
+<!--
+Program name: patient-form.html
+Author: Sara Saleem
+Date created: 06-10-2025
+Date last edited: 06-10-2025
+Version: 2.0
+Description: Patient Registration Form for MIS 3371 Homework 2 with validation and review
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Sara's Medicine</title>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="homework2.js"></script>
+</head>
+<body>
+<div id="header">
+<table style="width: 100%;">
+<tr>
+<td style="vertical-align: top;">
+<img alt="Sara's Medicine Logo" src="logo.png" width="100"/>
+<h1>Sara’s Medicine</h1>
+</td>
+<td style="text-align: right;">
+<p id="date"></p>
+</td>
+</tr>
+</table>
+</div>
+<div id="main">
+<form id="userInfo">
+<table>
+<tr><th align="left">Set up a new profile</th></tr>
+<!-- Block 1: Personal Info -->
+<tr>
+<td>First Name:</td>
+<td><input id="firstname" maxlength="30" name="firstname" required="" title="Only letters, apostrophes, and dashes allowed" type="text"/></td>
+<td>Middle Initial:</td>
+<td><input id="midinitial" maxlength="1" name="midinitial" title="Only one letter allowed" type="text"/></td>
+<td>Last Name:</td>
+<td><input id="lastname" maxlength="30" name="lastname" required="" title="Only letters, apostrophes, dashes and numbers 2-5 allowed" type="text"/></td>
+</tr>
+<tr>
+<td>Date of Birth:</td>
+<td><input id="dob" name="dob" required="" title="Select a valid birthdate" type="date"/></td>
+</tr>
+<tr>
+<td>Social Security Number:</td>
+<td><input id="ssn" maxlength="11" name="ssn" title="Use format XXX-XX-XXXX" type="password"/></td>
+</tr>
+<!-- Block 2: Contact Info -->
+<tr>
+<td>Email:</td>
+<td><input id="email" name="email" required="" title="Enter a valid email" type="email"/></td>
+<td>Phone:</td>
+<td><input id="phone" maxlength="12" name="phone" title="Format: 000-000-0000" type="tel"/></td>
+</tr>
+<!-- Block 3: Address -->
+<tr>
+<td>Address Line 1:</td>
+<td><input id="address1" maxlength="30" name="address1" required="" type="text"/></td>
+</tr>
+<tr>
+<td>Address Line 2:</td>
+<td><input id="address2" maxlength="30" name="address2" type="text"/></td>
+</tr>
+<tr>
+<td>City:</td>
+<td><input id="city" maxlength="30" name="city" required="" type="text"/></td>
+<td>State:</td>
+<td>
+<select id="state" name="state" required=""><option value="">-- Select State --</option><option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option><option value="DC">DC</option><option value="PR">PR</option></select>
+</td>
+<td>Zip Code:</td>
+<td><input id="zip" maxlength="10" name="zip" required="" title="Use 12345 or 12345-6789" type="text"/></td>
+</tr>
+<!-- Block 4: Choices -->
+<tr>
+<td>Check all that apply:</td>
+<td colspan="3">
+<input name="conditions" type="checkbox" value="Chicken Pox"/>Chicken Pox
+                        <input name="conditions" type="checkbox" value="Measles"/>Measles
+                        <input name="conditions" type="checkbox" value="Covid-19"/>Covid-19
+                        <input name="conditions" type="checkbox" value="Small Pox"/>Small Pox
+                        <input name="conditions" type="checkbox" value="Tetanus"/>Tetanus
+                    </td>
+</tr>
+<!-- Text area -->
+<tr>
+<td>Have you been vaccinated?</td>
+<td>
+<input id="vaccinated_yes" name="vaccinated" type="radio" value="Yes"/> Yes
+    <input id="vaccinated_no" name="vaccinated" type="radio" value="No"/> No
+  </td>
+</tr>
+<tr>
+<td>Are you pregnant?</td>
+<td>
+<input id="pregnant_yes" name="pregnant" type="radio" value="Yes"/> Yes
+    <input id="pregnant_no" name="pregnant" type="radio" value="No"/> No
+  </td>
+</tr>
+<tr>
+<td>Do you have allergies?</td>
+<td>
+<input id="allergies_yes" name="allergies" type="radio" value="Yes"/> Yes
+    <input id="allergies_no" name="allergies" type="radio" value="No"/> No
+  </td>
+</tr>
+<tr><td>Current Symptoms:</td><td colspan="3"><input name="currentSymptoms" type="checkbox" value="Fever"/> Fever <input name="currentSymptoms" type="checkbox" value="Headache"/> Headache <input name="currentSymptoms" type="checkbox" value="Nausea"/> Nausea <input name="currentSymptoms" type="checkbox" value="Fatigue"/> Fatigue <input name="currentSymptoms" type="checkbox" value="Shortness of Breath"/> Shortness of Breath <input name="currentSymptoms" type="checkbox" value="None"/> None </td></tr><tr>
+<td>Describe Your Symptoms:</td>
+<td colspan="3"><textarea cols="50" id="symptoms" name="symptoms" rows="3" title="Optional. Avoid using double quotes."></textarea></td>
+</tr>
+<!-- Slide Bar -->
+<tr>
+<td>Pain Level (0-10):</td>
+<td colspan="2">
+<input id="painlevel" max="10" min="0" name="painlevel" oninput="document.getElementById('salaryValue').textContent=this.value" step="1" type="range" value="5"/>
+<span id="salaryValue">5</span>
+</td>
+</tr>
+<!-- Login Info -->
+<tr>
+<td>User ID:</td>
+<td><input id="userid" name="userid" required="" title="5-30 characters. No spaces. Cannot start with a number." type="text"/></td>
+</tr>
+<tr>
+<td>Password:</td>
+<td><input id="password" name="password" required="" title="8-30 chars, 1 uppercase, 1 number, 1 special char, no quotes" type="password"/></td>
+</tr>
+<tr>
+<td>Confirm Password:</td>
+<td><input id="confirmPassword" name="confirmPassword" required="" title="Must match password" type="password"/></td>
+</tr>
+<!-- Buttons -->
+<tr>
+<td colspan="3">
+<button type="reset">Clear and Start Over</button>
+<button type="submit">Submit</button>
+<button onclick="reviewForm()" type="button">Review</button>
+</td>
+</tr>
+</table>
+</form>
+<!-- Review Output Area -->
+<div id="reviewSection" style="display:none; margin-top:20px; background:#fff; padding:15px; border:1px solid #ccc;">
+<h2>Review Your Submission</h2>
+<div id="reviewOutput"></div>
+</div>
+</div>
+<div id="footer">
+<button onclick="alert('Contact us at support@example.com')">Contact Us</button>
+<address class="footer-text">We'R'Docs Medical | PO BOX 18881 | Sugar Land TX 77496<br/>Website built by Sara Saleem</address>
+</div>
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("date").textContent = today.toLocaleDateString("en-US", options);
+        });
+
+        function reviewForm() {
+            const form = document.getElementById('userInfo');
+            const output = document.getElementById('reviewOutput');
+            const section = document.getElementById('reviewSection');
+
+            let data = new FormData(form);
+            let html = "<ul>";
+            for (let [key, value] of data.entries()) {
+                html += `<li><strong>${key}:</strong> ${value}</li>`;
+            }
+            html += "</ul>";
+            output.innerHTML = html;
+            section.style.display = "block";
+        }
+    </script>
+</body>
+</html>
+<!-- Vaccinated -->
+<!-- Pregnant -->
+<!-- Allergies -->

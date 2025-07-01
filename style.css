@@ -1,0 +1,22 @@
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4faff;
+    color: #222;
+}
+#header {
+    background-color: #e0f0ff;
+    padding: 10px;
+}
+#form-area {
+    margin: 20px;
+}
+table td {
+    padding: 5px;
+}
+#footer {
+    background-color: #eee;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+}
