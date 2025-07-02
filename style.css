@@ -20,3 +20,8 @@ table td {
     text-align: center;
     font-size: 0.9em;
 }
+
+/* Validation styles */
+.error  { color:#c00; font-size:0.8em; display:block; height:1em; }
+.valid  { border-color:#2d9f3a; }
+.invalid{ border-color:#c00; }

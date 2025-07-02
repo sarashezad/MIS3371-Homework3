@@ -14,7 +14,7 @@ Description: Patient Registration Form for MIS 3371 Homework 2 with validation a
 <meta charset="utf-8"/>
 <title>Sara's Medicine</title>
 <link href="style.css" rel="stylesheet"/>
-<script defer="" src="homework2.js"></script>
+<script defer src="final-script-v3.2.js"></script>
 </head>
 <body>
 <div id="header">
@@ -31,7 +31,7 @@ Description: Patient Registration Form for MIS 3371 Homework 2 with validation a
 </table>
 </div>
 <div id="main">
-<form id="userInfo">
+<form id="userInfo" action="thankyou.html">
 <table>
 <tr><th align="left">Set up a new profile</th></tr>
 <!-- Block 1: Personal Info -->
@@ -139,8 +139,8 @@ Description: Patient Registration Form for MIS 3371 Homework 2 with validation a
 <tr>
 <td colspan="3">
 <button type="reset">Clear and Start Over</button>
-<button type="submit">Submit</button>
-<button onclick="reviewForm()" type="button">Review</button>
+<button id="submitBtn" type="submit" disabled>Submit</button>
+<button id="reviewBtn" type="button">Review</button>
 </td>
 </tr>
 </table>
