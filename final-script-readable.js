@@ -1,12 +1,15 @@
 // -----------------------------------------------------------
 // Patient Registration Form – Homework 3 (JS Validation)
 // Author: Sara Saleem | Course: MIS 3371
+// Version: 3.2 (Readable format with comments)
 // -----------------------------------------------------------
 
+// Shortcut for getElementById
 function $(id) {
   return document.getElementById(id);
 }
 
+// Create a span element for error messages
 function makeErrorSpan(el) {
   const span = document.createElement("span");
   span.className = "error";
@@ -15,6 +18,7 @@ function makeErrorSpan(el) {
   return span;
 }
 
+// Set and clear error message
 function setError(span, msg) {
   span.textContent = msg;
 }
@@ -23,9 +27,7 @@ function clearError(span) {
   span.textContent = "";
 }
 
-// -----------------------------------------------------------
-// Validation rules (aligned with professor’s full spec)
-// -----------------------------------------------------------
+// Validation rules
 const rules = {
   firstname: {
     test: v => /^[A-Za-z'\-]{1,30}$/.test(v),
@@ -37,23 +39,21 @@ const rules = {
     msg: "Single letter only"
   },
   lastname: {
-    test: v => /^[A-Za-z'\-]{1,30}$/.test(v),
-    msg: "1–30 letters, apostrophes, or dashes"
+    test: v => /^[A-Za-z0-9'\-]{1,30}$/.test(v),
+    msg: "1–30 letters, numbers, apostrophes, or dashes"
   },
   dob: {
     test: v => {
       if (!v) return false;
       const date = new Date(v);
-      const today = new Date();
-      const oldest = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
-      return date < today && date > oldest;
+      return date < new Date();
     },
-    msg: "Valid birthdate (not in future, not older than 120 yrs)"
+    msg: "Choose a valid birth date"
   },
   ssn: {
     optional: true,
     test: v => /^\d{3}-\d{2}-\d{4}$/.test(v),
-    msg: "Format XXX‑XX‑XXXX"
+    msg: "Format XXX-XX-XXXX"
   },
   email: {
     test: v => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(v),
@@ -63,20 +63,19 @@ const rules = {
   phone: {
     optional: true,
     test: v => /^\d{3}-\d{3}-\d{4}$/.test(v),
-    msg: "Format 000‑000‑0000"
+    msg: "Format 000-000-0000"
   },
   address1: {
-    test: v => v.trim().length >= 2 && v.trim().length <= 30,
-    msg: "2–30 characters required"
+    test: v => v.trim().length > 0,
+    msg: "Address Line 1 is required"
   },
   address2: {
     optional: true,
-    test: v => v.trim().length === 0 || (v.trim().length >= 2 && v.trim().length <= 30),
-    msg: "2–30 characters if entered"
+    test: () => true
   },
   city: {
-    test: v => /^[A-Za-z'\-\s]{2,30}$/.test(v),
-    msg: "2–30 letters and spaces only"
+    test: v => /^[A-Za-z'\-\s]{1,30}$/.test(v),
+    msg: "Letters & spaces only (max 30)"
   },
   state: {
     test: v => v !== "",
@@ -100,18 +99,18 @@ const rules = {
   }
 };
 
-// -----------------------------------------------------------
-// Runtime Logic
-// -----------------------------------------------------------
+// Runtime logic
 window.addEventListener("DOMContentLoaded", () => {
   const form = $("userInfo");
   const submitBtn = $("submitBtn");
   const reviewBtn = $("reviewBtn");
 
   const validators = {};
+
   Object.keys(rules).forEach(id => {
     const el = $(id);
     if (!el) return;
+
     const span = makeErrorSpan(el);
     validators[id] = { el, span, ...rules[id] };
 
@@ -123,33 +122,17 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Extra: password confirm matching
-  [$("password"), $("confirmPassword")].forEach(el => {
+  [ $("password"), $("confirmPassword") ].forEach(el => {
     el?.addEventListener("input", () => {
       checkField("confirmPassword");
       toggleSubmit();
     });
   });
 
-  // SSN auto-formatting
-  const ssnField = $("ssn");
-  if (ssnField) {
-    ssnField.setAttribute("type", "password"); // hide input
-    ssnField.addEventListener("input", () => {
-      let val = ssnField.value.replace(/[^\d]/g, "");
-      if (val.length > 9) val = val.slice(0, 9);
-      let formatted = val;
-      if (val.length > 5)
-        formatted = val.slice(0, 3) + "-" + val.slice(3, 5) + "-" + val.slice(5);
-      else if (val.length > 3)
-        formatted = val.slice(0, 3) + "-" + val.slice(3);
-      ssnField.value = formatted;
-    });
-  }
-
   function checkField(id) {
     const v = validators[id];
     let value = v.el.value.trim();
+
     if (v.transform) value = v.transform(value);
     v.el.value = value;
 
