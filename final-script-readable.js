@@ -1,6 +1,7 @@
 // -----------------------------------------------------------
 // Patient Registration Form – Homework 3 (JS Validation)
 // Author: Sara Saleem | Course: MIS 3371
+// Version: 3.2 (Readable format with comments)
 // -----------------------------------------------------------
 
 // Shortcut for getElementById
